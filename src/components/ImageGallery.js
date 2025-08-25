@@ -150,7 +150,7 @@ const ImageGallery = () => {
         </div>
 
         {/* Image Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredImages.map((image, index) => (
             <div key={image.id} className="group cursor-pointer">
               <div 
@@ -160,7 +160,9 @@ const ImageGallery = () => {
                 <img
                   src={image.imageUrl}
                   alt={image.title}
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 
                 {/* Overlay */}
@@ -190,7 +192,7 @@ const ImageGallery = () => {
         </div>
 
         {/* Image Counter */}
-        <div className="text-center mt-8 text-gray-600">
+        <div className="text-center mt-8 text-gray-600 px-4">
           Hiển thị {filteredImages.length} / {allImages.length} hình ảnh
           {selectedCategory !== 'Tất Cả' && ` trong danh mục "${selectedCategory}"`}
         </div>
@@ -225,7 +227,8 @@ const ImageGallery = () => {
               <img
                 src={lightboxImage.imageUrl}
                 alt={lightboxImage.title}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                loading="eager"
+                className="max-w-full max-h-[80vh] md:max-h-[90vh] object-contain rounded-lg"
               />
 
               {/* Image Info */}
