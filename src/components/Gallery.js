@@ -91,14 +91,16 @@ const Gallery = () => {
         </div>
 
         {/* Main Gallery Display */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
           {/* Left: Image Display */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src={galleryImages[activeImage].imageUrl}
                 alt={galleryImages[activeImage].title}
-                className="w-full h-96 object-cover"
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full aspect-video object-cover"
               />
               
               {/* Navigation Arrows */}
@@ -124,7 +126,7 @@ const Gallery = () => {
             </div>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+            <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs sm:text-sm">
               {activeImage + 1} / {galleryImages.length}
             </div>
           </div>
@@ -134,10 +136,10 @@ const Gallery = () => {
             <div className="inline-block bg-gradient-primary text-white px-4 py-2 rounded-full text-sm font-medium">
               {galleryImages[activeImage].category}
             </div>
-            <h3 className="text-3xl font-bold text-gray-900">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
               {galleryImages[activeImage].title}
             </h3>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
               {galleryImages[activeImage].description}
             </p>
             
@@ -168,14 +170,16 @@ const Gallery = () => {
         </div>
 
         {/* Additional Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {galleryImages.map((image, index) => (
             <div key={image.id} className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <img
                   src={image.imageUrl}
                   alt={image.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4 text-white">
